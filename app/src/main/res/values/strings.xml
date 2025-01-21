@@ -1,0 +1,17 @@
+<resources>
+    <string name="your_app_name" translatable="false">MSDK Tester</string>
+
+    <string name="testing_tools">Testing Tools</string>
+
+    <string name="ad_set_live_stream_rtmp_config">RTMP Config</string>
+    <string name="ad_confirm">Confirm</string>
+    <string name="ad_cancel">Cancel</string>
+
+    <string name="msg_start_live_stream_success">Start Live Stream Success!</string>
+    <string name="msg_start_live_stream_failed">Start Live Stream Failed: %1$s</string>
+
+    <string name="start_button">Start</string>
+    <string name="stop_button">Stop</string>
+    <string name="record_button">Record</string>
+    <string name="take_photo_button">Picture</string>
+</resources>
