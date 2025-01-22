@@ -14,4 +14,10 @@
     <string name="stop_button">Stop</string>
     <string name="record_button">Record</string>
     <string name="take_photo_button">Picture</string>
+    <string name="back_button">Back</string>
+    <string name="virtual_stick_button">Virtual Stick</string>
+    <string name="flight_control_button">Flight Control</string>
+    <string name="gimbal_button">Gimbal</string>
+    <string name="zoom_button">Zoom</string>
+    <string name="push_button">Push</string>
 </resources>

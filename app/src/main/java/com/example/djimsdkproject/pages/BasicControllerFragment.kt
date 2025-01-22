@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import com.example.djimsdkproject.R
 import com.example.djimsdkproject.viewModel.BasicController
 import com.example.djimsdkproject.viewModel.Camera
@@ -28,6 +30,7 @@ class BasicControllerFragment: DJIFragment() {
         val destroyButton: Button = view.findViewById(R.id.control_stop_button)
         val takePhotoButton: Button = view.findViewById(R.id.take_photo_button)
         val recordButton: Button = view.findViewById(R.id.record_button)
+        val addButton: Button = view.findViewById(R.id.add_button)
 
         startButton.setOnClickListener {
             BasicController.runControlQueue()
@@ -51,6 +54,16 @@ class BasicControllerFragment: DJIFragment() {
 
             recordButton.text = getString(R.string.record_button)
             camera.stopRecordVideo()
+        }
+
+        addButton.setOnClickListener {
+            val fragmentManager: FragmentManager = parentFragmentManager
+            val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.replace(R.id.controller_frame, ControlPushFragment())
+
+            fragmentTransaction.commit()
         }
 
     }

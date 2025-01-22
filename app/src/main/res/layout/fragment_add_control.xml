@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/button_flight_control"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/flight_control_button"/>
+
+    <Button
+        android:id="@+id/button_virtual_stick"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/virtual_stick_button"/>
+
+    <Button
+        android:id="@+id/button_gimbal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/gimbal_button"/>
+
+    <Button
+        android:id="@+id/button_zoom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/zoom_button"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <Button
+            android:id="@+id/back_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:text="@string/back_button" />
+    </FrameLayout>
+
+</LinearLayout>
