@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.viewModels
 import com.example.djimsdkproject.R
+import com.example.djimsdkproject.databinding.FragmentLivestreamBinding
 import com.example.djimsdkproject.viewModel.LiveStream
 import com.example.djimsdkproject.util.ToastUtils
 import dji.sdk.keyvalue.value.common.ComponentIndexType
@@ -26,6 +27,10 @@ import dji.v5.utils.common.NumberUtils
 import dji.v5.utils.common.StringUtils
 
 class LiveStreamFragment : DJIFragment() {
+    private var _binding: FragmentLivestreamBinding? = null
+    private val binding: FragmentLivestreamBinding
+        get() = _binding!!
+
     private val cameraStreamManager = MediaDataCenter.getInstance().cameraStreamManager
 
     private val liveStreamVM: LiveStream by viewModels()
@@ -45,13 +50,14 @@ class LiveStreamFragment : DJIFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_livestream, container, false)
+    ): View {
+        _binding = FragmentLivestreamBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        svCameraStream = view.findViewById(R.id.sv_camera_stream)
+        svCameraStream = binding.svCameraStream
 
         initRGCamera()
         initRGQuality()
@@ -65,6 +71,7 @@ class LiveStreamFragment : DJIFragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         stopLive()
+        _binding = null
     }
 
     @SuppressLint("SetTextI18n")

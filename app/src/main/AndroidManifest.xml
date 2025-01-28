@@ -28,7 +28,7 @@
         tools:targetApi="33">
         <meta-data
             android:name="com.dji.sdk.API_KEY"
-            android:value="<sdk_key>"/>
+            android:value="ea6d17b47e8b5142d09ac92a"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"

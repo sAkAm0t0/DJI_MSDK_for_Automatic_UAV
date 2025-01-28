@@ -3,65 +3,75 @@ package com.example.djimsdkproject.pages
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.Button
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import androidx.lifecycle.Observer
 import com.example.djimsdkproject.R
+import com.example.djimsdkproject.databinding.FragmentBasicControllerBinding
 import com.example.djimsdkproject.viewModel.BasicController
 import com.example.djimsdkproject.viewModel.Camera
 
 class BasicControllerFragment: DJIFragment() {
 
     private val camera: Camera = Camera()
+    private var _binding: FragmentBasicControllerBinding? = null
+    private val binding: FragmentBasicControllerBinding
+        get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_basic_controller, container, false)
+    ): View {
+        _binding = FragmentBasicControllerBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val startButton: Button = view.findViewById(R.id.control_start_button)
-        val destroyButton: Button = view.findViewById(R.id.control_stop_button)
-        val takePhotoButton: Button = view.findViewById(R.id.take_photo_button)
-        val recordButton: Button = view.findViewById(R.id.record_button)
-        val addButton: Button = view.findViewById(R.id.add_button)
+        binding.controlLogText.text = fun(): String {
+            var text = ""
 
-        startButton.setOnClickListener {
-            BasicController.runControlQueue()
+            BasicController.controlQueue.value?.forEach {
+                text += "${it.command}: ${it.params} (${it.runTime} ms)\n"
+            }
+
+            return text
+        }()
+
+        binding.controlStartButton.setOnClickListener {
+            BasicController.runControlWithQueue()
         }
 
-        destroyButton.setOnClickListener {
+        binding.controlStopButton.setOnClickListener {
             BasicController.destroy()
         }
 
-        takePhotoButton.setOnClickListener {
+        binding.takePhotoButton.setOnClickListener {
             camera.takePhoto()
         }
 
-        recordButton.setOnClickListener {
+        binding.recordButton.setOnClickListener {
             if(camera.isRecording == false) {
-                recordButton.text = getString(R.string.stop_button)
-                camera.startRecordVideo()
+                binding.recordButton.text = getString(R.string.stop_button)
+                camera.startRecording()
 
                 return@setOnClickListener
             }
 
-            recordButton.text = getString(R.string.record_button)
-            camera.stopRecordVideo()
+            binding.recordButton.text = getString(R.string.record_button)
+            camera.stopRecording()
         }
 
-        addButton.setOnClickListener {
+        binding.addButton.setOnClickListener {
             val fragmentManager: FragmentManager = parentFragmentManager
             val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
 
             fragmentTransaction.addToBackStack(null)
-            fragmentTransaction.replace(R.id.controller_frame, ControlPushFragment())
+            fragmentTransaction.replace(R.id.controller_frame, ControlListFragment())
 
             fragmentTransaction.commit()
         }
@@ -71,6 +81,6 @@ class BasicControllerFragment: DJIFragment() {
     override fun onDestroyView() {
         super.onDestroyView()
 
-        BasicController.destroy()
+        _binding = null
     }
 }

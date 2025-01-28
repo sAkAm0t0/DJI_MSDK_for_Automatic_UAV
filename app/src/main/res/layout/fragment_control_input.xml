@@ -3,15 +3,17 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linear_layout_input_list"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     >
 
-    <FrameLayout
+    <LinearLayout
         android:id="@+id/frame_input"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical"/>
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -21,23 +23,37 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <Button
-                android:id="@+id/button_cancel"
-                android:layout_width="0dp"
+                android:id="@+id/button_do"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_margin="10dp"
-                android:text="@string/cancel"/>
+                android:layout_marginHorizontal="16dp"
+                android:text="@string/do_button"/>
 
-            <Button
-                android:id="@+id/button_push"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_margin="10dp"
-                android:text="@string/push_button"/>
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/button_push"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginHorizontal="10dp"
+                    android:text="@string/push_button"/>
+
+                <Button
+                    android:id="@+id/button_cancel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginHorizontal="10dp"
+                    android:text="@string/ad_cancel"/>
+
+            </LinearLayout>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

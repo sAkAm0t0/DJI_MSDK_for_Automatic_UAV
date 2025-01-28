@@ -15,10 +15,10 @@ class Camera {
     fun zoomCamera(ratio: Double) {
         CameraKey.KeyCameraZoomRatios.create().set(ratio,
             {
-
+                ToastUtils.showToast("zoom: Success")
             },
             {
-
+                ToastUtils.showToast("zoom: Failure")
             }
         )
     }
@@ -31,7 +31,7 @@ class Camera {
         CameraKey.KeyStartShootPhoto.create().action()
     }
 
-    fun startRecordVideo() {
+    fun startRecording() {
         if(CameraKey.KeyIsRecording.create().get() == true) return
 
         if(cameraMode.get() != CameraMode.VIDEO_NORMAL) cameraMode.set(CameraMode.VIDEO_NORMAL)
@@ -39,7 +39,7 @@ class Camera {
         CameraKey.KeyStartRecord.create().action()
     }
 
-    fun stopRecordVideo() {
+    fun stopRecording() {
         if(CameraKey.KeyIsRecording.create().get() == false) return
 
         CameraKey.KeyStopRecord.create().action()

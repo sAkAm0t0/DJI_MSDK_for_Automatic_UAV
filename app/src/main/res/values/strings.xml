@@ -20,4 +20,5 @@
     <string name="gimbal_button">Gimbal</string>
     <string name="zoom_button">Zoom</string>
     <string name="push_button">Push</string>
+    <string name="do_button">Do</string>
 </resources>
