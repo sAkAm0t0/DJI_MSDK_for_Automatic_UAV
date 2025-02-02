@@ -1,6 +1,7 @@
 package com.example.djimsdkproject.viewModel
 
 import com.example.djimsdkproject.util.ToastUtils
+import dji.sdk.keyvalue.key.DJIKeyInfo
 import dji.sdk.keyvalue.value.gimbal.GimbalAngleRotation
 import dji.sdk.keyvalue.value.gimbal.GimbalAngleRotationMode
 import dji.sdk.keyvalue.key.GimbalKey
@@ -9,6 +10,7 @@ import dji.v5.common.callback.CommonCallbacks
 import dji.v5.common.error.IDJIError
 import dji.v5.et.action
 import dji.v5.et.create
+import dji.v5.et.set
 
 class Gimbal: DJIViewModel() {
 
@@ -31,6 +33,13 @@ class Gimbal: DJIViewModel() {
         })
     }
 
+    fun enableVerticalShot(enable: Boolean) {
+        GimbalKey.KeyGimbalVerticalShotEnabled.create().set(enable,
+            {},
+            {}
+        )
+    }
+
     private fun rotateGimbal(gimbalAngleRotation: GimbalAngleRotation, callbacks: CommonCallbacks.CompletionCallbackWithParam<EmptyMsg>) {
         GimbalKey.KeyRotateByAngle.create().action(gimbalAngleRotation, {
             callbacks.onSuccess(it)
@@ -38,5 +47,4 @@ class Gimbal: DJIViewModel() {
             callbacks.onFailure(e)
         })
     }
-
 }

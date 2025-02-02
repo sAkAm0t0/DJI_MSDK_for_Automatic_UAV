@@ -17,6 +17,7 @@ import com.example.djimsdkproject.util.ToastUtils
 import dji.sdk.keyvalue.value.common.ComponentIndexType
 import dji.v5.common.callback.CommonCallbacks
 import dji.v5.common.error.IDJIError
+import dji.v5.common.utils.GpsUtils
 import dji.v5.manager.datacenter.MediaDataCenter
 import dji.v5.manager.datacenter.livestream.LiveStreamStatus
 import dji.v5.manager.datacenter.livestream.LiveVideoBitrateMode
@@ -58,6 +59,9 @@ class LiveStreamFragment : DJIFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         svCameraStream = binding.svCameraStream
+
+        binding.widgetHorizontalSituationIndicator.setSimpleModeEnable(true)
+        GpsUtils.egm96Altitude()
 
         initRGCamera()
         initRGQuality()
